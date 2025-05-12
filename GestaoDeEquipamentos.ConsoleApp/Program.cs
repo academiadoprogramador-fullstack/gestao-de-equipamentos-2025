@@ -12,11 +12,11 @@ class Program
         // criar um servidor web
         WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
+        builder.Services.AddControllers();
+
         WebApplication app = builder.Build();
 
         // mapeamento de rotas
-        app.MapGet("/", PaginaInicial);
-
         app.MapGet("/fabricantes/cadastrar", ExibirFormularioCadastroFabricante);
         app.MapPost("/fabricantes/cadastrar", CadastrarFabricante);
 
@@ -28,14 +28,9 @@ class Program
 
         app.MapGet("/fabricantes/visualizar", VisualizarFabricantes);
 
+        app.MapControllers();
+
         app.Run();
-    }
-
-    static Task PaginaInicial(HttpContext context)
-    {
-        string conteudo = File.ReadAllText("Compartilhado/Html/PaginaInicial.html");
-
-        return context.Response.WriteAsync(conteudo);
     }
 
     static Task ExibirFormularioCadastroFabricante(HttpContext context)
@@ -45,6 +40,7 @@ class Program
         return context.Response.WriteAsync(conteudo);
     }
 
+    // Controlador de Fabricantes
     static Task CadastrarFabricante(HttpContext context)
     {
         ContextoDados contextoDados = new ContextoDados(true);
