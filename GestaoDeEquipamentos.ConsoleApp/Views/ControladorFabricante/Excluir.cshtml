@@ -1,3 +1,9 @@
+@using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante
+
+@{
+    Fabricante f = ViewBag.Fabricante;
+}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,9 +24,9 @@
 
     <h3>Exclusão de Fabricante</h3>
 
-    <p>Você tem certeza que deseja excluir o registro "#fabricante#"?</p>
+    <p>Você tem certeza que deseja excluir o registro "@f.Nome"?</p>
 
-    <form action="/fabricantes/excluir/#id#" method="post">
+    <form action="/fabricantes/excluir/@f.Id" method="post">
         <button type="submit">Confirmar</button>
         <a href="/fabricantes/visualizar">Voltar</a>
     </form>

@@ -12,9 +12,7 @@ public class ControladorFabricante : Controller
     [HttpGet("cadastrar")]
     public IActionResult ExibirFormularioCadastroFabricante()
     {
-        string conteudo = System.IO.File.ReadAllText("ModuloFabricante/Html/Cadastrar.html");
-
-        return Content(conteudo, "text/html");
+        return View("Cadastrar");
     }
 
     [HttpPost("cadastrar")]
@@ -31,15 +29,9 @@ public class ControladorFabricante : Controller
 
         repositorioFabricante.CadastrarRegistro(novoFabricante);
 
-        string conteudo = System.IO.File.ReadAllText("Compartilhado/Html/Notificacao.html");
+        ViewBag.Mensagem = $"O registro \"{novoFabricante.Nome}\" foi cadastrado com sucesso!";
 
-        StringBuilder sb = new StringBuilder(conteudo);
-
-        sb.Replace("#mensagem#", $"O registro \"{novoFabricante.Nome}\" foi cadastrado com sucesso!");
-
-        string conteudoString = sb.ToString();
-
-        return Content(conteudoString, "text/html");
+        return View("Notificacao");
     }
 
     [HttpGet("editar/{id:int}")]
@@ -50,18 +42,9 @@ public class ControladorFabricante : Controller
 
         Fabricante fabricanteSelecionado = repositorioFabricante.SelecionarRegistroPorId(id);
 
-        string conteudo = System.IO.File.ReadAllText("ModuloFabricante/Html/Editar.html");
+        ViewBag.Fabricante = fabricanteSelecionado;
 
-        StringBuilder sb = new StringBuilder(conteudo);
-
-        sb.Replace("#id#", id.ToString());
-        sb.Replace("#nome#", fabricanteSelecionado.Nome);
-        sb.Replace("#email#", fabricanteSelecionado.Email);
-        sb.Replace("#telefone#", fabricanteSelecionado.Telefone);
-
-        string conteudoString = sb.ToString();
-
-        return Content(conteudoString, "text/html");
+        return View("Editar");
     }
 
     [HttpPost("editar/{id:int}")]
@@ -79,15 +62,9 @@ public class ControladorFabricante : Controller
 
         repositorioFabricante.EditarRegistro(id, fabricanteAtualizado);
 
-        string conteudo = System.IO.File.ReadAllText("Compartilhado/Html/Notificacao.html");
+        ViewBag.Mensagem = $"O registro \"{fabricanteAtualizado.Nome}\" foi editado com sucesso!";
 
-        StringBuilder sb = new StringBuilder(conteudo);
-
-        sb.Replace("#mensagem#", $"O registro \"{fabricanteAtualizado.Nome}\" foi editado com sucesso!");
-
-        string conteudoString = sb.ToString();
-
-        return Content(conteudoString, "text/html");
+        return View("Notificacao");
     }
 
     [HttpGet("excluir/{id:int}")]
@@ -98,16 +75,9 @@ public class ControladorFabricante : Controller
 
         Fabricante fabricanteSelecionado = repositorioFabricante.SelecionarRegistroPorId(id);
 
-        string conteudo = System.IO.File.ReadAllText("ModuloFabricante/Html/Excluir.html");
+        ViewBag.Fabricante = fabricanteSelecionado;
 
-        StringBuilder sb = new StringBuilder(conteudo);
-
-        sb.Replace("#id#", id.ToString());
-        sb.Replace("#fabricante#", fabricanteSelecionado.Nome);
-
-        string conteudoString = sb.ToString();
-
-        return Content(conteudoString, "text/html");
+        return View("Excluir");
     }
 
     [HttpPost("excluir/{id:int}")]
@@ -118,15 +88,9 @@ public class ControladorFabricante : Controller
 
         repositorioFabricante.ExcluirRegistro(id);
 
-        string conteudo = System.IO.File.ReadAllText("Compartilhado/Html/Notificacao.html");
+        ViewBag.Mensagem = $"O registro foi excluído com sucesso!";
 
-        StringBuilder sb = new StringBuilder(conteudo);
-
-        sb.Replace("#mensagem#", $"O registro foi excluído com sucesso!");
-
-        string conteudoString = sb.ToString();
-
-        return Content(conteudoString, "text/html");
+        return View("Notificacao");
     }
 
     [HttpGet("visualizar")]

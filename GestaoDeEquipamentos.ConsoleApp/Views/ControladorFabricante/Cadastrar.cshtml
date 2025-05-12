@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Edição de Fabricante - Gestão de Equipamentos</title>
+    <title>Cadastro de Fabricante - Gestão de Equipamentos</title>
 </head>
 
 <body>
@@ -11,29 +11,28 @@
     <hr />
 
     <a href="/">Página Inicial</a> /
-    <a href="/fabricantes/cadastrar">Cadastrar Novo Fabricante</a> /
     <a href="/fabricantes/visualizar">Visualizar Fabricantes</a>
 
     <hr />
 
-    <h3>Edição de Fabricante</h3>
+    <h3>Cadastro de Fabricante</h3>
 
-    <form action="/fabricantes/editar/#id#" method="post">
+    <form action="/fabricantes/cadastrar" method="post">
         <label>Nome do Fabricante:</label>
         <br />
-        <input type="text" name="nome" value="#nome#" />
+        <input type="text" name="nome" />
 
         <br />
 
         <label>Email do Fabricante:</label>
         <br />
-        <input type="text" name="email" value="#email#" />
+        <input type="text" name="email" />
 
         <br />
 
         <label>Telefone do Fabricante:</label>
         <br />
-        <input type="text" name="telefone" value="#telefone#" />
+        <input type="text" name="telefone" />
         <hr />
 
         <button type="submit">Gravar</button>

@@ -1,9 +1,14 @@
+@using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante
+
+@{
+    Fabricante f = ViewBag.Fabricante;
+}
+
 <!DOCTYPE html>
 <html>
-<!--Contém metadados (dados sobre os dados) da página HTML-->
 <head>
     <meta charset="utf-8" />
-    <title>Cadastro de Fabricante - Gestão de Equipamentos</title>
+    <title>Edição de Fabricante - Gestão de Equipamentos</title>
 </head>
 
 <body>
@@ -12,30 +17,29 @@
     <hr />
 
     <a href="/">Página Inicial</a> /
+    <a href="/fabricantes/cadastrar">Cadastrar Novo Fabricante</a> /
     <a href="/fabricantes/visualizar">Visualizar Fabricantes</a>
 
     <hr />
 
+    <h3>Edição de Fabricante</h3>
 
-    <h3>Cadastro de Fabricante</h3>
-
-    <!--formulários-->
-    <form action="/fabricantes/cadastrar" method="post">
+    <form action="/fabricantes/editar/@f.Id" method="post">
         <label>Nome do Fabricante:</label>
         <br />
-        <input type="text" name="nome" />
+        <input type="text" name="nome" value="@f.Nome" />
 
         <br />
 
         <label>Email do Fabricante:</label>
         <br />
-        <input type="text" name="email" />
+        <input type="text" name="email" value="@f.Email" />
 
         <br />
 
         <label>Telefone do Fabricante:</label>
         <br />
-        <input type="text" name="telefone" />
+        <input type="text" name="telefone" value="@f.Telefone" />
         <hr />
 
         <button type="submit">Gravar</button>
