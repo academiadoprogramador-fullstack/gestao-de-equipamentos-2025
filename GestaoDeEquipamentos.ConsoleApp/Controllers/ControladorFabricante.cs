@@ -1,4 +1,5 @@
 ﻿using GestaoDeEquipamentos.ConsoleApp.Compartilhado;
+using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
 using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
 using Microsoft.AspNetCore.Mvc;
 using System.Text;
@@ -134,23 +135,10 @@ public class ControladorFabricante : Controller
         ContextoDados contextoDados = new ContextoDados(true);
         IRepositorioFabricante repositorioFabricante = new RepositorioFabricanteEmArquivo(contextoDados);
 
-        string conteudo = System.IO.File.ReadAllText("ModuloFabricante/Html/Visualizar.html");
-
-        StringBuilder stringBuilder = new StringBuilder(conteudo);
-
         List<Fabricante> fabricantes = repositorioFabricante.SelecionarRegistros();
 
-        foreach (Fabricante f in fabricantes)
-        {
-            string itemLista = $"<li>{f.ToString()} / <a href=\"/fabricantes/editar/{f.Id}\">Editar</a> / <a href=\"/fabricantes/excluir/{f.Id}\">Excluir</a> </li> #fabricante#";
+        ViewBag.Fabricantes = fabricantes;
 
-            stringBuilder.Replace("#fabricante#", itemLista);
-        }
-
-        stringBuilder.Replace("#fabricante#", "");
-
-        string conteudoString = stringBuilder.ToString();
-
-        return Content(conteudoString, "text/html");
+        return View("Visualizar");
     }
 }
