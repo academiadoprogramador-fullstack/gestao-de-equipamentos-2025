@@ -1,12 +1,14 @@
+@using GestaoDeEquipamentos.ConsoleApp.Models
+
+@model NotificacaoViewModel;
+
 <!DOCTYPE html>
 <html>
-<!--Contém metadados (dados sobre os dados) da página HTML-->
 <head>
     <meta charset="utf-8" />
-    <title>Notificação - Gestão de Equipamentos</title>
+    <title>@Model.TituloPagina - Gestão de Equipamentos</title>
 </head>
 
-<!--Contém o conteúdo da página HTML-->
 <body>
     <h1>Gestão de Equipamentos</h1>
 
@@ -16,8 +18,8 @@
 
     <hr />
 
-    <h3>Notificação</h3>
+    <h3>@Model.TituloPagina</h3>
 
-    <p>@ViewBag.Mensagem</p>
+    <p>@Model.Mensagem</p>
 </body>
 </html>

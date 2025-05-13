@@ -5,7 +5,6 @@ namespace GestaoDeEquipamentos.ConsoleApp.Extensoes;
 
 public static class FabricanteExtensions
 {
-    // Método de Extensão
     public static Fabricante ParaEntidade(this FormularioFabricanteViewModel formularioVM)
     {
         return new Fabricante(formularioVM.Nome, formularioVM.Email, formularioVM.Telefone);

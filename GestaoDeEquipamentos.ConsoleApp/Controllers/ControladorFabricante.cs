@@ -29,9 +29,12 @@ public class ControladorFabricante : Controller
     
         repositorioFabricante.CadastrarRegistro(novoFabricante);
 
-        ViewBag.Mensagem = $"O registro \"{cadastrarVM.Nome}\" foi cadastrado com sucesso!";
+        NotificacaoViewModel notificacaoVM = new NotificacaoViewModel(
+            "Fabricante Cadastrado!",
+            $"O registro \"{novoFabricante.Nome}\" foi cadastrado com sucesso!"
+        );
 
-        return View("Notificacao");
+        return View("Notificacao", notificacaoVM);
     }
 
     [HttpGet("editar/{id:int}")]
@@ -58,13 +61,16 @@ public class ControladorFabricante : Controller
         ContextoDados contextoDados = new ContextoDados(true);
         IRepositorioFabricante repositorioFabricante = new RepositorioFabricanteEmArquivo(contextoDados);
 
-        Fabricante fabricanteAtualizado = new Fabricante(editarVM.Nome, editarVM.Email, editarVM.Telefone);
+        Fabricante fabricanteEditado = editarVM.ParaEntidade();
 
-        repositorioFabricante.EditarRegistro(id, fabricanteAtualizado);
+        repositorioFabricante.EditarRegistro(id, fabricanteEditado);
 
-        ViewBag.Mensagem = $"O registro \"{editarVM.Nome}\" foi editado com sucesso!";
+        NotificacaoViewModel notificacaoVM = new NotificacaoViewModel(
+            "Fabricante Editado!",
+            $"O registro \"{fabricanteEditado.Nome}\" foi editado com sucesso!"
+        );
 
-        return View("Notificacao");
+        return View("Notificacao", notificacaoVM);
     }
 
     [HttpGet("excluir/{id:int}")]
@@ -91,9 +97,12 @@ public class ControladorFabricante : Controller
 
         repositorioFabricante.ExcluirRegistro(id);
 
-        ViewBag.Mensagem = $"O registro foi excluído com sucesso!";
+        NotificacaoViewModel notificacaoVM = new NotificacaoViewModel(
+            "Fabricante Excluído!",
+            "O registro foi excluído com sucesso!"
+        );
 
-        return View("Notificacao");
+        return View("Notificacao", notificacaoVM);
     }
 
     [HttpGet("visualizar")]
