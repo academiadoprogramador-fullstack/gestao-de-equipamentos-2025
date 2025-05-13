@@ -1,4 +1,5 @@
-﻿using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
+﻿using GestaoDeEquipamentos.ConsoleApp.Extensoes;
+using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
 
 namespace GestaoDeEquipamentos.ConsoleApp.Models;
 
@@ -55,12 +56,7 @@ public class VisualizarFabricantesViewModel
     {
         foreach (Fabricante f in fabricantes)
         {
-            DetalhesFabricanteViewModel detalhesVM = new DetalhesFabricanteViewModel(
-                f.Id,
-                f.Nome,
-                f.Email,
-                f.Telefone
-            );
+            DetalhesFabricanteViewModel detalhesVM = f.ParaDetalhesVM();
 
             Registros.Add(detalhesVM);
         }

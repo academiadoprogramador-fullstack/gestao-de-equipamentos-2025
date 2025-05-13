@@ -1,4 +1,5 @@
 ﻿using GestaoDeEquipamentos.ConsoleApp.Compartilhado;
+using GestaoDeEquipamentos.ConsoleApp.Extensoes;
 using GestaoDeEquipamentos.ConsoleApp.Models;
 using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
 using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
@@ -24,7 +25,7 @@ public class ControladorFabricante : Controller
         ContextoDados contextoDados = new ContextoDados(true);
         IRepositorioFabricante repositorioFabricante = new RepositorioFabricanteEmArquivo(contextoDados);
 
-        Fabricante novoFabricante = new Fabricante(cadastrarVM.Nome, cadastrarVM.Email, cadastrarVM.Telefone);
+        Fabricante novoFabricante = cadastrarVM.ParaEntidade();
     
         repositorioFabricante.CadastrarRegistro(novoFabricante);
 
@@ -103,6 +104,8 @@ public class ControladorFabricante : Controller
 
         List<Fabricante> fabricantes = repositorioFabricante.SelecionarRegistros();
 
-        return View("Visualizar", fabricantes);
+        VisualizarFabricantesViewModel visualizarVM = new VisualizarFabricantesViewModel(fabricantes);
+
+        return View("Visualizar", visualizarVM);
     }
 }
