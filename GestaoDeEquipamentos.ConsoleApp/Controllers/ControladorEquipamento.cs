@@ -10,12 +10,20 @@ namespace GestaoDeEquipamentos.ConsoleApp.Controllers;
 [Route("equipamentos")]
 public class ControladorEquipamento : Controller
 {
+    private ContextoDados contextoDados;
+    private IRepositorioEquipamento repositorioEquipamento;
+    private IRepositorioFabricante repositorioFabricante;
+
+    public ControladorEquipamento()
+    {
+        contextoDados = new ContextoDados(true);
+        repositorioEquipamento = new RepositorioEquipamentoEmArquivo(contextoDados);
+        repositorioFabricante = new RepositorioFabricanteEmArquivo(contextoDados);
+    }
+
     [HttpGet("cadastrar")]
     public IActionResult Cadastrar()
     {
-        var contextoDados = new ContextoDados(true);
-        var repositorioFabricante = new RepositorioFabricanteEmArquivo(contextoDados);
-
         var fabricantes = repositorioFabricante.SelecionarRegistros();
 
         var cadastrarVM = new CadastrarEquipamentoViewModel(fabricantes);
@@ -26,10 +34,6 @@ public class ControladorEquipamento : Controller
     [HttpPost("cadastrar")]
     public IActionResult Cadastrar(CadastrarEquipamentoViewModel cadastrarVM)
     {
-        var contextoDados = new ContextoDados(true);
-        var repositorioEquipamento = new RepositorioEquipamentoEmArquivo(contextoDados);
-        var repositorioFabricante = new RepositorioFabricanteEmArquivo(contextoDados);
-
         var fabricantes = repositorioFabricante.SelecionarRegistros();
 
         Equipamento equipamento = cadastrarVM.ParaEntidade(fabricantes);
@@ -47,9 +51,6 @@ public class ControladorEquipamento : Controller
     [HttpGet("visualizar")]
     public IActionResult Visualizar()
     {
-        var contextoDados = new ContextoDados(true);
-        var repositorioEquipamento = new RepositorioEquipamentoEmArquivo(contextoDados);
-
         var equipamentos = repositorioEquipamento.SelecionarRegistros();
 
         var visualizarVM = new VisualizarEquipamentosViewModel(equipamentos);
