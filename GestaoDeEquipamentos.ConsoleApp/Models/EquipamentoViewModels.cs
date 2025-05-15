@@ -1,7 +1,64 @@
 ﻿using GestaoDeEquipamentos.ConsoleApp.Extensoes;
 using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
+using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
 
 namespace GestaoDeEquipamentos.ConsoleApp.Models;
+
+public abstract class FormularioEquipamentoViewModel
+{
+    public string Nome { get; set; }
+    public decimal PrecoAquisicao { get; set; }
+    public DateTime DataFabricacao { get; set; }
+    public int FabricanteId { get; set; }
+
+    public List<SelecionarFabricanteViewModel> FabricantesDisponiveis { get; set;  }
+
+    protected FormularioEquipamentoViewModel()
+    {
+        FabricantesDisponiveis = new List<SelecionarFabricanteViewModel>();   
+    }
+}
+
+public class SelecionarFabricanteViewModel
+{
+    public int Id { get; set; }
+    public string Nome { get; set; }
+
+    public SelecionarFabricanteViewModel(int id, string nome)
+    {
+        Id = id;
+        Nome = nome;
+    }
+}
+
+public class CadastrarEquipamentoViewModel : FormularioEquipamentoViewModel
+{
+    public CadastrarEquipamentoViewModel()
+    {
+        
+    }
+
+    public CadastrarEquipamentoViewModel(List<Fabricante> fabricantes)
+    {
+        foreach (var fabricante in fabricantes)
+        {
+            var selecionarVM = new SelecionarFabricanteViewModel(fabricante.Id, fabricante.Nome);
+
+            FabricantesDisponiveis.Add(selecionarVM);
+        }
+    }
+}
+
+public class EditarEquipamentoViewModel : FormularioEquipamentoViewModel
+{
+    public int Id { get; set; }
+
+    public EditarEquipamentoViewModel()
+    {
+
+    }
+}
+
 
 public class VisualizarEquipamentosViewModel
 {
