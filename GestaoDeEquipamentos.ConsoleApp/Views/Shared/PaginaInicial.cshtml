@@ -1,44 +1,106 @@
 <!DOCTYPE html>
 <html>
-<!--Contém metadados (dados sobre os dados) da página HTML-->
 <head>
     <meta charset="utf-8" />
     <title>Gestão de Equipamentos</title>
+
+    <style>
+        body {
+            margin: 0;
+            background-color: #1e1e1e;
+            color: white;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 100px;
+
+            justify-content: space-between;
+
+            padding: 0 200px;
+        }
+
+        nav > h2 {
+            margin: 0;
+        }
+
+        nav > ul {
+            display: flex;
+            gap: 30px;
+
+            list-style: none;
+        }
+
+        header {
+            padding: 0 200px;
+        }
+
+        main { 
+            /* padding: vertical horizontal; */
+            /* padding: top right bottom left; */
+            padding: 0 200px;
+
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .card {
+            border: 1px solid white;
+            padding: 0 10px;
+
+            width: 350px;
+            height: 150px;
+        }
+
+    </style>
+
 </head>
-
-<!--Contém o conteúdo da página HTML-->
 <body>
-    <h1>Gestão de Equipamentos</h1>
+    <nav>
+        <h2>Gestão de Equipamentos</h2>
 
-    <hr />
+        <ul>
+            <li><a href="/">Página Inicial</a></li>
+            <li><a href="/fabricantes/visualizar">Fabricantes</a></li>
+            <li><a href="/equipamentos/visualizar">Equipamentos</a></li>
+            <li><a href="/chamados/visualizar">Chamados</a></li>
+        </ul>
+    </nav>
 
-    <a href="/">Página Inicial</a> /
+    <header>
+        <h3>Página Inicial</h3>
+    </header>
 
-    <hr />
+    <main>
+        <div class="card">
+            <h3>Fabricantes</h3>
 
-    <h3>Fabricantes</h3>
+            <ul>
+                <li><a href="/fabricantes/cadastrar">Cadastrar Novo Fabricante</a></li>
+                <li><a href="/fabricantes/visualizar">Visualizar Fabricantes</a></li>
+            </ul>
+        </div>
 
-    <ul>
-        <li><a href="/fabricantes/cadastrar">Cadastrar Novo Fabricante</a></li>
-        <li><a href="/fabricantes/visualizar">Visualizar Fabricantes</a></li>
-    </ul>
+        <div class="card">
+            <h3>Equipamentos</h3>
 
-    <hr />
+            <ul>
+                <li><a href="/equipamentos/cadastrar">Cadastrar Novo Equipamento</a></li>
+                <li><a href="/equipamentos/visualizar">Visualizar Equipamentos</a></li>
+            </ul>
+        </div>
 
-    <h3>Equipamentos</h3>
+        <div class="card">
+            <h3>Chamados</h3>
 
-    <ul>
-        <li><a href="/equipamentos/cadastrar">Cadastrar Novo Equipamento</a></li>
-        <li><a href="/equipamentos/visualizar">Visualizar Equipamentos</a></li>
-    </ul>
-
-    <hr />
-
-    <h3>Chamados</h3>
-
-    <ul>
-        <li><a href="/chamados/cadastrar">Cadastrar Novo Chamado</a></li>
-        <li><a href="/chamados/visualizar">Visualizar Chamados</a></li>
-    </ul>
+            <ul>
+                <li><a href="/chamados/cadastrar">Cadastrar Novo Chamado</a></li>
+                <li><a href="/chamados/visualizar">Visualizar Chamados</a></li>
+            </ul>
+        </div>
+    </main>
     </body>
 </html>
