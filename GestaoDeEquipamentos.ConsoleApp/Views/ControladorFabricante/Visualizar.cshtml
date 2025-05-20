@@ -8,26 +8,178 @@
 <head>
     <meta charset="utf-8" />
     <title>Visualização de Fabricantes - Gestão de Equipamentos</title>
+
+    <style>
+        :root {
+            --fundo-primario: #1e1e1e;
+            --fundo-secundario: #2c2c2e;
+            --texto-neutro: #f1f1f1;
+            --texto-primario: #ec6afa;
+            --cor-borda: #3a3a3c;
+            --cor-borda-hover: #38383a;
+        }
+
+        body {
+            margin: 0;
+            color: var(--texto-primario);
+            background-color: var(--fundo-primario);
+            font-family: Arial, sans-serif;
+        }
+
+        a {
+            color: var(--texto-primario);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+            a:hover {
+                color: #b084d1;
+            }
+
+        /* barra de navegação */
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 200px;
+            background-color: var(--fundo-secundario);
+            border-bottom: 1px solid var(--cor-borda);
+        }
+
+            nav h2 {
+                margin: 0;
+                font-size: 24px;
+                color: var(--texto-neutro);
+            }
+
+            nav ul {
+                display: flex;
+                gap: 20px;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                font-size: 18px;
+            }
+
+        /* cabeçalho da página */
+        header {
+            padding: 20px 200px;
+            border-bottom: 1px solid var(--cor-borda);
+        }
+
+            header .titulo-pagina {
+                color: var(--texto-neutro);
+            }
+
+            header .botao-cadastrar {
+                padding: 10px 10px;
+                color: black;
+                background-color: #ec6afa;
+                border: 1px solid #ec6afa;
+                border-radius: 9px;
+            }
+
+        /* conteúdo principal */
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 25px;
+            padding: 0px 200px;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 350px;
+            height: 150px;
+            padding: 20px;
+            background-color: var(--fundo-secundario);
+            border: 1px solid var(--cor-borda);
+            border-radius: 12px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+            .card:hover {
+                background-color: var(--cor-borda-hover);
+                transform: scale(1.02);
+            }
+
+            .card h3 {
+                color: var(--texto-primario);
+                margin: 0 0 10px 0;
+            }
+
+            .card p {
+                font-size: 16px;
+                color: var(--texto-neutro);
+                margin: 2px 0;
+            }
+
+        .botoes-interacao {
+            margin-top: 20px;
+            margin-left: auto;
+        }
+
+        .botoes-interacao a[type="button"] {
+            padding: 5px 10px;
+            color: black;
+            background-color: #b084d1;
+            border: 1px solid #b084d1;
+            border-radius: 9px;
+        }
+
+        @@media (max-width: 768px) {
+            nav,
+            main {
+                padding: 20px;
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            header {
+                padding: 20px;
+            }
+
+            main {
+                align-items: center;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Gestão de Equipamentos</h1>
+    <nav>
+        <h2>Gestão de Equipamentos</h2>
 
-    <hr />
+        <ul>
+            <li><a class="link-navegacao" href="/">Página Inicial</a></li>
+            <li><a class="link-navegacao" href="/fabricantes/visualizar">Fabricantes</a></li>
+            <li><a class="link-navegacao" href="/equipamentos/visualizar">Equipamentos</a></li>
+            <li><a class="link-navegacao" href="/chamados/visualizar">Chamados</a></li>
+        </ul>
+    </nav>
 
-    <a href="/">Página Inicial</a> /
-    <a href="/fabricantes/cadastrar">Cadastrar Novo Fabricante</a> /
+    <header>
+        <h3>Visualização de Fabricantes</h3>
+    </header>
 
-    <hr />
-
-    <h3>Visualização de Fabricantes</h3>
-
-    <ul>
+    <main>
         @foreach (DetalhesFabricanteViewModel f in Model.Registros)
         {
-            <li>@f.ToString() / <a href="/fabricantes/editar/@f.Id">Editar</a> /
-                <a href="/fabricantes/excluir/@f.Id">Excluir</a></li>
+            <div class="card">
+                <h3>@f.Nome</h3>
+
+                <p><strong>Email:</strong> @f.Email</p>
+                <p><strong>Telefone:</strong> @f.Telefone</p>
+
+                <div class="botoes-interacao">
+                    <a type="button" href="/fabricantes/editar/@f.Id">Editar</a>
+                    <a type="button" href="/fabricantes/excluir/@f.Id">Excluir</a>
+                </div>
+            </div>
         }
-    </ul>
+    </main>
 </body>
 </html>
