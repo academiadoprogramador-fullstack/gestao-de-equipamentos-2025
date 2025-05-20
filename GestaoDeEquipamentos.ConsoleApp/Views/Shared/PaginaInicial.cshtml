@@ -5,10 +5,23 @@
     <title>Gestão de Equipamentos</title>
 
     <style>
+        :root {
+            --fundo-principal: #1e1e1e;
+            --fundo-secundario: #2c2c2e;
+
+            --cor-borda: #3a3a3c;
+        }
+
         body {
             margin: 0;
-            background-color: #1e1e1e;
+            background-color: var(--fundo-principal);
             color: white;
+
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        a {
+            text-decoration: none;
         }
 
         nav {
@@ -20,6 +33,9 @@
             justify-content: space-between;
 
             padding: 0 200px;
+            background-color: var(--fundo-secundario);
+
+            border-bottom: 1px solid var(--cor-borda);
         }
 
         nav > h2 {
@@ -31,6 +47,15 @@
             gap: 30px;
 
             list-style: none;
+        }
+
+        .link-navegacao {
+            color: #DB56EB;
+
+            text-decoration: none;
+
+            font-weight: 500;
+            font-size: 18px;
         }
 
         header {
@@ -48,13 +73,24 @@
         }
 
         .card {
-            border: 1px solid white;
+            border: 1px solid var(--cor-borda);
+            border-radius: 15px;
+
             padding: 0 10px;
 
             width: 350px;
             height: 150px;
+            background-color: var(--fundo-secundario);
         }
 
+        .card h3 {
+            color: #DB56EB;
+        }
+
+
+        .card p {
+            color: #ffffff;
+        }
     </style>
 
 </head>
@@ -63,10 +99,10 @@
         <h2>Gestão de Equipamentos</h2>
 
         <ul>
-            <li><a href="/">Página Inicial</a></li>
-            <li><a href="/fabricantes/visualizar">Fabricantes</a></li>
-            <li><a href="/equipamentos/visualizar">Equipamentos</a></li>
-            <li><a href="/chamados/visualizar">Chamados</a></li>
+            <li><a class="link-navegacao" href="/">Página Inicial</a></li>
+            <li><a class="link-navegacao" href="/fabricantes/visualizar">Fabricantes</a></li>
+            <li><a class="link-navegacao" href="/equipamentos/visualizar">Equipamentos</a></li>
+            <li><a class="link-navegacao" href="/chamados/visualizar">Chamados</a></li>
         </ul>
     </nav>
 
@@ -75,32 +111,30 @@
     </header>
 
     <main>
-        <div class="card">
-            <h3>Fabricantes</h3>
+        <a href="/fabricantes/visualizar">
+            <div class="card">
+                <h3>Fabricantes</h3>
 
-            <ul>
-                <li><a href="/fabricantes/cadastrar">Cadastrar Novo Fabricante</a></li>
-                <li><a href="/fabricantes/visualizar">Visualizar Fabricantes</a></li>
-            </ul>
-        </div>
+                <p>Gerencie os Fabricantes de Equipamentos</p>
+            </div>
+        </a>
 
-        <div class="card">
-            <h3>Equipamentos</h3>
+        <a href="/equipamentos/visualizar">
+            <div class="card">
+                <h3>Equipamentos</h3>
 
-            <ul>
-                <li><a href="/equipamentos/cadastrar">Cadastrar Novo Equipamento</a></li>
-                <li><a href="/equipamentos/visualizar">Visualizar Equipamentos</a></li>
-            </ul>
-        </div>
+                <p>Gerencie os Equipamentos</p>
+            </div>
+        </a>
 
-        <div class="card">
-            <h3>Chamados</h3>
+        <a href="/chamados/visualizar">
+            <div class="card">
+                <h3>Chamados</h3>
 
-            <ul>
-                <li><a href="/chamados/cadastrar">Cadastrar Novo Chamado</a></li>
-                <li><a href="/chamados/visualizar">Visualizar Chamados</a></li>
-            </ul>
-        </div>
+                <p>Gerencie os Chamados de Manutenção</p>
+            </div>
+        </a>
+
     </main>
     </body>
 </html>
